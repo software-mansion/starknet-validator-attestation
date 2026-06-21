@@ -160,10 +160,15 @@ async fn main() -> anyhow::Result<()> {
     // Check version of JSON-RPC API endpoint
     let spec_requirements = semver::VersionReq::parse(JSON_RPC_API_VERSION_REQUIRED)
         .expect("JSON-RPC version requirements should be OK");
-    let spec_version: semver::Version = client
+    let spec_version_str = client
         .spec_version()
         .await
-        .context("Getting spec version of node endpoint")?
+        .context("Getting spec version of node endpoint")?;
+    let spec_version_str_clean = spec_version_str
+        .split('-')
+        .next()
+        .unwrap_or(&spec_version_str);
+    let spec_version: semver::Version = spec_version_str_clean
         .parse()
         .context("Parsing JSON-RPC API specification version")?;
     if !spec_requirements.matches(&spec_version) {
