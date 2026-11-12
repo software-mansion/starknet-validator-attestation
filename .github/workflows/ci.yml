@@ -12,8 +12,8 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: Swatinem/rust-cache@v2
+      - uses: actions/checkout@v4.4.0
+      - uses: Swatinem/rust-cache@v2.9.3
         with:
           save-if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       - run: cargo build --locked --verbose
@@ -23,8 +23,8 @@ jobs:
     name: Clippy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: Swatinem/rust-cache@v2
+      - uses: actions/checkout@v4.4.0
+      - uses: Swatinem/rust-cache@v2.9.3
         with:
           save-if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       - run: cargo clippy --locked -- -D warnings
@@ -33,5 +33,5 @@ jobs:
     name: Check formatting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.4.0
       - run: cargo fmt --all -- --check

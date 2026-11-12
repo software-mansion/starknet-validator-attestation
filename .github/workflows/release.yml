@@ -12,8 +12,8 @@ jobs:
     create-draft-release:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: taiki-e/create-gh-release-action@v1
+            - uses: actions/checkout@v4.4.0
+            - uses: taiki-e/create-gh-release-action@v1.12.0
               with:
                 # (Optional) Create a draft release.
                 # [default value: false]
@@ -30,8 +30,8 @@ jobs:
                   os: ubuntu-22.04
         runs-on: ${{ matrix.os }}
         steps:
-            - uses: actions/checkout@v4
-            - uses: taiki-e/upload-rust-binary-action@v1
+            - uses: actions/checkout@v4.4.0
+            - uses: taiki-e/upload-rust-binary-action@v1.30.2
               with:
                 bin: starknet-validator-attestation
                 target: ${{ matrix.target }}
